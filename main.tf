@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "remote-state-gbugallo-bucket"
-    key    = "aws-vm/terraform.tfstate"
+    bucket = "nome-do-seu-bucket"
+    key    = "caminho/terraform.tfstate" #caminho que irá gravar o tfstate no bucket da AWS de forma remota
     region = "sa-east-1"
   }
 }
@@ -21,7 +21,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      owner      = "guiBugallo"
+      owner      = "exemplo"
       managed-by = "Terraform"
     }
   }
@@ -30,8 +30,8 @@ provider "aws" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "remote-state-gbugallo-bucket"
-    key    = "aws-vpc/terraform.tfstate"
+    bucket = "nome-do-seu-bucket"
+    key    = "caminho/terraform.tfstate" #este caminho precisa ser o do tfstate que contenha a criação da VPC
     region = "sa-east-1"
   }
 }
